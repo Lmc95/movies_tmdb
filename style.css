@@ -38,9 +38,13 @@ header {
 }
 
 main {
+    background: rgb(17,17,17);
+    background: -moz-linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(23,37,57,1) 50%, rgba(17,17,17,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(23,37,57,1) 50%, rgba(17,17,17,1) 100%);
+    background: linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(23,37,57,1) 50%, rgba(17,17,17,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#111111",endColorstr="#111111",GradientType=1);
     width: 100%;
     min-height: 100vh;
-    background-color: var(--blue-dark);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -147,7 +151,7 @@ section {
     width: 100%;
     height: 5rem;
     padding: var(--p-container);
-    background-color: var(--main-dark);
+    background-color: rgb(15, 15, 15);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,7 +159,7 @@ section {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    box-shadow: 0 5px 5px rgba(10, 10, 10, 0.5);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
  }
  .nav_category a {
     margin: var(--p-item);
@@ -164,26 +168,54 @@ section {
 
 
  /* SECTION TWO - SLIDER MOVIES (glide.js)*/
+
+ .title_category {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--p-item);
+    margin: 4rem 0 1.5rem 0;
+ }
+ .title_category span {
+    width: 100%;
+    height: 1px;
+    margin: 0 1.25rem;
+    background-color: rgba(250, 250, 250, 0.5);
+ }
+ .title_category h2,
+ .title_category a {
+    min-width: max-content;
+ }
+
  .cont_slider_movies {
     width: 100%;
     height: auto;
-    outline: 1px solid red;
     max-width: 1440px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    padding: .5rem;
+    padding: .5rem .5rem 5rem .5rem;
  }
 .glider {
     padding: .5rem 0;
 }
- .card {
-     margin: 0 .5rem;
-     display: flex;
-     justify-content: center;
-     outline: 1px solid cyan;
+.card {
+    background-color: rgb(15, 15, 15);
+    margin: 0 .5rem;
+    display: flex;
+    justify-content: center;
+    outline: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: .5rem;
+ }
+ .card img {
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+ }
+ .card h2 {
+    padding: var(--p-item);
  }
 
  /* slider responsive */
@@ -210,7 +242,6 @@ section {
 /*-------------------*/
 
 .nav_slider {
-    outline: 1px solid red;
     width: auto;
     display: flex;
     justify-content: center;
