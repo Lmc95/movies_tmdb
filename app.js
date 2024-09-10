@@ -48,13 +48,19 @@ window.addEventListener('load', () => {
     ]
 
   });
-
+  
   const btnMenu = document.getElementById('btn_c');
   const menu = document.querySelector('.category_items');
   const menuList = document.querySelectorAll('.category_items li')
-
+  
   const selectCategory = document.getElementById('category_select');
+  const icoBtn = document.querySelector('#btn_c i');
+  
+  const menuHeader = document.querySelector('.menu_header');
+  const btnHeader = document.getElementById('btn_header');
+  const barsHeader = document.querySelector('#btn_header i');
 
+  const searchHeader = document.querySelector('.search_header');
 
   const updateCategory = (i) => {
     switch (i) {
@@ -96,7 +102,6 @@ window.addEventListener('load', () => {
     })
   }
 
-  const icoBtn = document.querySelector('#btn_c i');
   btnMenu.addEventListener('click', () => {
     if (!menu.classList.contains('items_active')) {
       // SI NO CONTIENE "items_active"
@@ -111,7 +116,6 @@ window.addEventListener('load', () => {
     }
   })
 
-  let indexItem = 0;
   menuList.forEach((item, index) => {
     item.addEventListener('click', () => {
       menu.classList.remove('items_active');
@@ -119,6 +123,22 @@ window.addEventListener('load', () => {
 
 
     })
+  })
+
+  btnHeader.addEventListener('click', () => {
+    if(!menuHeader.classList.contains('menu_active')) {
+      menuHeader.classList.add('menu_active');
+      barsHeader.classList.remove('fa-bars');
+      barsHeader.classList.add('fa-xmark');
+      searchHeader.classList.add('search_active');
+      document.body.style.overflow = 'hidden';
+    }else {
+      menuHeader.classList.remove('menu_active');
+      barsHeader.classList.remove('fa-xmark');
+      barsHeader.classList.add('fa-bars');
+      searchHeader.classList.remove('search_active');
+      document.body.style.overflow = 'auto';
+    }
   })
 
 
