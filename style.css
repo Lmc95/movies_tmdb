@@ -193,6 +193,10 @@ section {
     border: none;
     background: none;
 }
+.search_header input:focus {
+    outline: none;
+    caret-color: var(--main-light);
+}
 
 .search_header button {
     width: 30px;
@@ -255,7 +259,7 @@ section {
 .genres_active li {
     margin: .5rem;
     background-color: #1F9BE8;
-    padding: 0 .5rem;
+    padding: 0;
     border-radius: .5rem;
 }
 
@@ -279,24 +283,68 @@ section {
 }
 
 .info_movie_bg {
-    width: 70%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+.info_movie_bg h2 {
+    font-size: 2rem;
+}
+
+.details_movie_bg {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: .5rem 0 1rem;
+}
+.details_movie_bg li {
+    margin: .5rem ;
+}
+.details_movie_bg li i {
+    margin-right: .5rem;
+}
+#synopsis_movie_bg {
+    height: auto;
+    overflow-y: auto;
 }
 
 .buttons_bg_movie {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
 }
-
 .buttons_bg_movie button {
     border: none;
-    padding: var(--p-item);
-    margin: 1rem 1rem 1rem 0;
+    background: none;
+    color: var(--main-light);
+    margin-top: 1.5rem;
 }
+#btn_play_movie_bg {
+    margin-right: 3rem;
+    padding: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--main-light);
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+#btn_play_movie_bg i {
+    font-size: 3.25rem;
+    margin-right: 1rem;
+}
+#btn_play_trailer_bg {
+    font-size: 1rem;
+    outline: 1px solid var(--blue-light);
+    padding: .5rem 1.25rem;
+    border-radius: 1rem;
+}
+
 
 /* nav menu - category */
 .nav_category {
@@ -376,6 +424,9 @@ section {
         background-color: rgba(15, 15, 15, 0.75);
     }
 
+    .info_movie_bg {
+        width: 80%;
+    }
     .category_items {
         opacity: 1;
         display: flex;
@@ -554,9 +605,16 @@ section {
         overflow: auto;
         transition: 0s ease-in-out;
     }
+    #synopsis_movie_bg {
+        max-height: 150px;
+        overflow-y: auto;
+    }
 }
 
 @media screen and (min-width: 1024px) {
+    .info_movie_bg {
+        width: 60%;
+    }
     .card {
         max-width: none;
         width: auto;
