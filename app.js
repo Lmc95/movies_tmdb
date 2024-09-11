@@ -142,4 +142,22 @@ window.addEventListener('load', () => {
   })
 
 
+  const btnGenres = document.getElementById('btn_genres');
+  const menuGenres = document.querySelector('.menu_genres');
+
+
+  const icoGenre = document.querySelector('#btn_genres i');
+
+  btnGenres.addEventListener('click', () => {
+    if(!menuGenres.classList.contains('genres_active')) {
+      menuGenres.classList.add('genres_active');
+      icoGenre.classList.add('fa-caret-up');
+      icoGenre.classList.remove('fa-caret-down');
+    }else {
+      menuGenres.classList.remove('genres_active');
+      icoGenre.classList.add('fa-caret-down');
+      icoGenre.classList.remove('fa-caret-up');
+    }
+  })
+
 })
