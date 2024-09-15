@@ -322,6 +322,8 @@ section {
     background: none;
     color: var(--main-light);
     margin-top: 1.5rem;
+    cursor: pointer;
+    transition: .3s ease-in-out;
 }
 #btn_play_movie_bg {
     margin-right: 3rem;
@@ -337,12 +339,22 @@ section {
 #btn_play_movie_bg i {
     font-size: 3.25rem;
     margin-right: 1rem;
+    color: var(--blue-light);
+    transition: .3s ease-in-out;
 }
 #btn_play_trailer_bg {
     font-size: 1rem;
     outline: 1px solid var(--blue-light);
     padding: .5rem 1.25rem;
     border-radius: 1rem;
+}
+#btn_play_movie_bg:hover .fa-circle-play{
+    color: red;
+    transform: scale(.95);
+}
+#btn_play_trailer_bg:hover {
+    outline: 1px solid red;
+    transform: scale(.95);
 }
 
 
@@ -488,6 +500,9 @@ section {
 .title_category a {
     min-width: max-content;
 }
+.title_category > a {
+    color: var(--blue-light);
+}
 
 .cont_slider_movies {
     width: 100%;
@@ -511,11 +526,20 @@ section {
     display: flex;
     justify-content: center;
 }
+.card:hover {
+    cursor: pointer;
+}
 
 .body_card {
     background-color: rgb(15, 15, 15);
     outline: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: .5rem;
+    display: grid;
+    transition: .3s ease-in-out;
+}
+.body_card:hover {
+    transform: scale(.95);
+    outline: 1px solid var(--main-light);
 }
 
 .card img {
@@ -524,9 +548,33 @@ section {
 }
 
 .card h2 {
-    padding: var(--p-item);
+    padding: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.nav_slider {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
 }
 
+.btn_prev,
+.btn_next {
+    width: 50px;
+    padding: .5rem;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    color: var(--main-light);
+    transition: .3s ease-in-out;
+}
+.btn_next:hover,
+.btn_prev:hover {
+    color: var(--blue-light);
+}
 /* slider responsive */
 @media screen and (min-width: 200px) {
     .body_card {
@@ -623,21 +671,4 @@ section {
 
 /*-------------------*/
 
-.nav_slider {
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
-}
-
-.btn_prev,
-.btn_next {
-    width: 50px;
-    padding: .5rem;
-    border: none;
-    background: none;
-    font-size: 1.5rem;
-    color: var(--main-light);
-}
 
