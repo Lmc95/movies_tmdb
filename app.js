@@ -1,4 +1,4 @@
-import { appData } from "./data.js";
+import { appData } from "./src/data.js";
 
 
 new Glider(document.querySelector('.glider'), {
