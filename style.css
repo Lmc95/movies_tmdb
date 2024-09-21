@@ -29,6 +29,9 @@ a {
 li {
     list-style: none;
 }
+input {
+    color: var(--main-light);
+}
 
 header {
     width: 100%;

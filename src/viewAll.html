@@ -31,7 +31,6 @@
             </div>
             <nav class="menu_header">
                 <a href="#">HOME</a>
-                <a href="#">MOVIES</a>
                 <div class="cont_genres">
                     <button id="btn_genres">GENRES
                         <i class="fa-solid fa-caret-down"></i>
@@ -74,74 +73,14 @@
 
         <div class="cont_movies_all">
             <div class="title_movies_all">
-                <h2>NOW PLAYING</h2>
+                <h2 id="title_grid">NOW PLAYING</h2>
                 <p>Sort by</p>
             </div>
             <div class="grid_movies_all">
                 <!-- 
                 PRUEBA. 
-                 Intentaremos que lueog sean creadas dinamicamente desde js 
+                 Intentaremos que luego sean creadas dinamicamente desde js 
                  -->
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
-                <div class="card_movie">
-                    <img src="/images/images_movies_figma/poster_jw1.webp" alt="">
-                </div>
             </div>
             
             <div class="cont_pagination">
@@ -151,7 +90,7 @@
                 <div class="pages">
                     <p class="num_page">01</p>
                     <label for="search_page"></label>
-                    <input type="number" name="search_page" class="search_page" id="search_page" placeholder="...">
+                    <input type="number" min="1" name="search_page" class="search_page" id="search_page" placeholder="...">
                     <button id="btn_num_page">GO</button>
                 </div>
                 <button id="btn_next">

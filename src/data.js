@@ -33,6 +33,11 @@ const cardBody = document.querySelectorAll('.body_card');
 let image = '/images/images_movies_figma/poster_jw1.webp';
 
 
+if(!sessionStorage.getItem('categoria')){
+    // si no está la categoría creamos una por default "Now playing"
+    sessionStorage.setItem('defaultCategory', urlCategory.nowPlaying);
+}
+
 // Obtiene lista de películas según la categoría que le pasemos.
 const slideMovies = async (category) => {
     try {
@@ -62,24 +67,28 @@ const updateCategory = (i) => {
             selectCategory.textContent = "NOW PLAYING";
             colorCategory(i);
             slideMovies(urlCategory.nowPlaying);
+            sessionStorage.setItem('categoria', urlCategory.nowPlaying)
             break;
         case 1:
             console.log('POPULAR')
             selectCategory.textContent = "POPULAR";
             colorCategory(i);
             slideMovies(urlCategory.popular);
+            sessionStorage.setItem('categoria', urlCategory.popular)
             break;
         case 2:
             console.log('TOP RATED')
             selectCategory.textContent = "TOP RATED";
             colorCategory(i);
             slideMovies(urlCategory.topRated);
+            sessionStorage.setItem('categoria', urlCategory.topRated)
             break;
         case 3:
             console.log('UPCOMING')
             selectCategory.textContent = "UPCOMING";
             colorCategory(i);
             slideMovies(urlCategory.upcoming);
+            sessionStorage.setItem('categoria', urlCategory.upcoming)
             break;
         default:
             break;
@@ -109,8 +118,13 @@ const cerrarGenre = () => {
     icoGenre.classList.add('fa-caret-down');
     icoGenre.classList.remove('fa-caret-up');
 }
-let hola = 'HOLA'
+
 const appData = {
+    // Api.
+    apiKey,
+    urlApi,
+    urlCategory,
+    urlImage,
     // Variables.
     menuHeader,
     btnHeader,
@@ -131,7 +145,6 @@ const appData = {
     colorCategory,
     abrirGenre,
     cerrarGenre,
-    hola
 }
 
 export {appData}
