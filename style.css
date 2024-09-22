@@ -538,11 +538,50 @@ section {
     outline: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: .5rem;
     display: grid;
+    position: relative;
     transition: .3s ease-in-out;
 }
 .body_card:hover {
     transform: scale(.95);
     outline: 1px solid var(--main-light);
+}
+
+.info_card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    padding: 1rem .5rem;
+    background-color: rgba(15, 15, 15, 0.75);
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+    opacity: 0;
+    overflow: auto;
+    transition: .3s ease-in-out;
+}
+.body_card:hover .info_card {
+    width: 100%;
+    height: calc(100% - 67px);
+    opacity: 1;
+}
+.info_card ul {
+    display: flex;
+    padding-bottom: .5rem;
+    font-size: .85rem;
+}
+.info_card ul li {
+    margin-right: 1rem;
+}
+.info_card ul li i {
+    margin-right: .5rem;
+}
+.info_card p {
+    max-width: 100%;
+    font-size: .85rem;
+}
+.info_card::-webkit-scrollbar {
+    display: none;
 }
 
 .card img {

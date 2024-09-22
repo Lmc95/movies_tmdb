@@ -37,7 +37,6 @@ if(!sessionStorage.getItem('categoria')){
     // si no está la categoría creamos una por default "Now playing"
     sessionStorage.setItem('defaultCategory', urlCategory.nowPlaying);
 }
-
 // Obtiene lista de películas según la categoría que le pasemos.
 const slideMovies = async (category) => {
     try {
@@ -48,7 +47,16 @@ const slideMovies = async (category) => {
         const movieListTen = resMovies.results.slice(0, 10);
 
         cardBody.forEach((card, index) => {
-            card.innerHTML = `<img src="${urlImage}${movieListTen[index].poster_path}"><h2>${movieListTen[index].title}</h2>`
+            card.innerHTML = `
+            <div class="info_card">
+            <ul>
+            <li id="raiting_movie_card"><i class="fa-regular fa-star"></i>${Math.round(movieListTen[index].vote_average)}/10</li>
+            <li id="release_movie_card"><i class="fa-regular fa-calendar"></i>${movieListTen[index].release_date.slice(0,4)}</li>
+            </ul>
+            <p id="sypnosis_movie_card">${movieListTen[index].overview}</p>
+            </div>
+            <img src="${urlImage}${movieListTen[index].poster_path}">
+            <h2>${movieListTen[index].title}</h2>`
         })
         
         

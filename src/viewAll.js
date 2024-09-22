@@ -40,13 +40,25 @@ const validUrl = (urlCategory) => {
 }
 
 // Crear carta
-const createCardGrid = (imgMovie, titleMovie) => {
+const createCardGrid = (imgMovie, titleMovie, raitingMovie, releaseMovie, sypMovie) => {
   let cardMovie = document.createElement('div');
   cardMovie.classList.add('card_movie');
+
+  // Info movie
+  let infoCardMovie = document.createElement('div');
+  infoCardMovie.classList.add('card_info_movie');
+  infoCardMovie.innerHTML = `
+  <ul>
+  <li id="raiting_movie_card"><i class="fa-regular fa-star"></i>${raitingMovie}/10</li>
+  <li id="release_movie_card"><i class="fa-regular fa-calendar"></i>${releaseMovie}</li>
+  </ul>
+  <p id="sypnosis_movie_card">${sypMovie}</p>
+  `
 
   let cardBodyMovie = document.createElement('div');
   cardBodyMovie.classList.add('card_body_movie');
   cardMovie.appendChild(cardBodyMovie);
+  cardBodyMovie.appendChild(infoCardMovie);
 
   let cardImgBody = document.createElement('img');
   cardImgBody.src = imgMovie;
@@ -67,7 +79,7 @@ const viewAllCategory = async () => {
     console.log(resTest);
 
     resTest.results.forEach((movie, index) => {
-      createCardGrid(appData.urlImage + movie.poster_path, movie.title)
+      createCardGrid(appData.urlImage + movie.poster_path, movie.title, Math.round(movie.vote_average), movie.release_date.slice(0,4), movie.overview);
     })
 
 
