@@ -22,7 +22,7 @@ switch (storageCategory) {
   case appData.urlCategory.popular:
     titleGrid.textContent = 'POPULAR';
     break;
-  case appData.urlCategory.topRatedr:
+  case appData.urlCategory.topRated:
     titleGrid.textContent = 'TOP RATED';
     break;
   case appData.urlCategory.upcoming:

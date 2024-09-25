@@ -2,7 +2,7 @@
 // Esta api solo se utiliza para desarrollo.
 const apiKey = '0fd03a39b7ac0b30c7ab5e52ebb50d49';
 const urlApi = 'https://api.themoviedb.org/3';
-const urlImage = 'http://image.tmdb.org/t/p/w300'
+const urlImage = 'http://image.tmdb.org/t/p/w500'
 const urlCategory = {
     nowPlaying: '/movie/now_playing',
     popular: '/movie/popular',
@@ -28,7 +28,6 @@ const selectCategory = document.getElementById('category_select');
 const icoBtn = document.querySelector('#btn_c i');
 // CAROUSEL CATEGORY
 const cardBody = document.querySelectorAll('.body_card');
-
 // imagen de prueba.
 let image = '/images/images_movies_figma/poster_jw1.webp';
 

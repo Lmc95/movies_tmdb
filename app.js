@@ -1,7 +1,7 @@
 import { appData } from "./src/data.js";
 
 
-new Glider(document.querySelector('.glider'), {
+const contGlider = new Glider(document.querySelector('.glider'), {
   slidesToShow: 1,
   slidesToScroll: 1,
   dots: '.dots',
@@ -12,7 +12,7 @@ new Glider(document.querySelector('.glider'), {
 
   responsive: [
     {
-      // screens greater than >= 775px
+      // screens greater than >= 430px
       breakpoint: 430,
       settings: {
         // Set to `auto` and provide item width to adjust to viewport
@@ -21,7 +21,7 @@ new Glider(document.querySelector('.glider'), {
       }
     },
     {
-      // screens greater than >= 775px
+      // screens greater than >= 630px
       breakpoint: 630,
       settings: {
         // Set to `auto` and provide item width to adjust to viewport
@@ -30,7 +30,7 @@ new Glider(document.querySelector('.glider'), {
       }
     },
     {
-      // screens greater than >= 775px
+      // screens greater than >= 810px
       breakpoint: 810,
       settings: {
         // Set to `auto` and provide item width to adjust to viewport
@@ -39,12 +39,21 @@ new Glider(document.querySelector('.glider'), {
       }
     },
     {
-      // screens greater than >= 775px
+      // screens greater than >= 1024px
       breakpoint: 1024,
       settings: {
         // Set to `auto` and provide item width to adjust to viewport
         slidesToShow: 5,
         slidesToScroll: 5,
+      }
+    },
+    {
+      // screens greater than >= 1200px
+      breakpoint: 1200,
+      settings: {
+        // Set to `auto` and provide item width to adjust to viewport
+        slidesToShow: 6,
+        slidesToScroll: 6,
       }
     }
   ]
@@ -68,12 +77,19 @@ appData.btnMenu.addEventListener('click', () => {
   }
 })
 
+
 // Actualiza el titulo del contenedor nav_category.
 appData.menuList.forEach((item, index) => {
   item.addEventListener('click', () => {
     appData.menu.classList.remove('items_active');
     // En base a la opcion seleccionada se cambiar el titulo por ese nombre.
     appData.updateCategory(index);
+
+    if(contGlider) {
+      contGlider.scrollItem(0);
+    }else {
+      console.error(error);
+    }
   })
 })
 

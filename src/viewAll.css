@@ -42,7 +42,7 @@ header {
     margin-bottom: 2rem;
 }
 .title_movies_all > h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-right: 1rem;
 }
 .title_movies_all > p {
@@ -56,7 +56,7 @@ header {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     justify-items: center;
-    row-gap: 1.5rem;
+    gap: 1rem;
 }
 
 .card_movie {
@@ -85,9 +85,9 @@ header {
 .card_info_movie {
     background-color: rgba(15, 15, 15, 0.75);
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
-    width: 0;
+    width: 100%;
     height: 0;
     padding: 1rem .5rem;
     overflow: hidden;
@@ -101,7 +101,7 @@ header {
     outline: 1px solid rgba(255, 255, 255, 0.5);
 }
 .card_movie:hover .card_info_movie {
-    width: 100%;
+    top: 0;
     height: 100%;
     opacity: 1;
 }
@@ -191,24 +191,58 @@ header {
 @media screen and (min-width: 300px) {
     .grid_movies_all {
         grid-template-columns: 1fr 1fr;
-        column-gap: 1rem;
     }
 }
 @media screen and (min-width: 450px) {
     .grid_movies_all {
         grid-template-columns: repeat(3, 1fr);
-        column-gap: 1rem;
     }
 }
 @media screen and (min-width: 660px) {
     .grid_movies_all {
         grid-template-columns: repeat(4, 1fr);
-        column-gap: 1rem;
     }
 }
 @media screen and (min-width: 870px) {
     .grid_movies_all {
         grid-template-columns: repeat(5, 1fr);
-        column-gap: 1rem;
+    }
+}
+@media screen and (min-width: 1400px) {
+    .grid_movies_all {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2rem;
+    }
+    #title_grid {
+        font-size: 1.5rem;
+    }
+}
+
+/* RESOLUCIONES ALTAS */
+@media screen and (min-width: 1921px){
+    #title_grid {
+        font-size: 2rem;
+    }
+    .title_movies_all > p {
+        font-size: 1.25rem;
+    }
+    .card_info_movie ul li,
+    .card_info_movie p {
+        font-size: 1.215rem;
+    }
+}
+@media screen and (min-width: 2560px) {
+    #title_grid {
+        font-size: 2.25rem;
+    }
+    .cont_movies_all {
+        max-width: 1920px;
+    }
+    .title_movies_all > p {
+        font-size: 1.375rem;
+    }
+    .card_info_movie ul li,
+    .card_info_movie p {
+        font-size: 1.25rem;
     }
 }

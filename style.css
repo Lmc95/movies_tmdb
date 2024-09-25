@@ -35,7 +35,8 @@ input {
 
 header {
     width: 100%;
-    min-height: 100px;
+    height: auto;
+    min-height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,7 +112,7 @@ section {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: var(--p-container);
+    padding: .5rem 1rem;
     position: relative;
     top: 0;
     left: 0;
@@ -126,14 +127,16 @@ section {
     position: relative;
     z-index: 5002;
 }
-
+.logo_header {
+    font-size: 1.5rem;
+}
 #btn_header {
     border: none;
     background: none;
 }
 
 #btn_header i {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--main-light);
 }
 
@@ -192,9 +195,10 @@ section {
 
 .search_header input {
     width: 100%;
-    height: 35px;
+    height: auto;
     border: none;
     background: none;
+    padding: .75em;
 }
 .search_header input:focus {
     outline: none;
@@ -203,7 +207,7 @@ section {
 
 .search_header button {
     width: 30px;
-    height: 35px;
+    height: auto;
     border: none;
     background: none;
 }
@@ -364,7 +368,8 @@ section {
 /* nav menu - category */
 .nav_category {
     width: 100%;
-    height: 5rem;
+    height: 10%;
+    min-height: 60px;
     padding: 0 1rem;
     background-color: rgb(15, 15, 15);
     display: flex;
@@ -408,6 +413,7 @@ section {
 
 
 .category_items li {
+    margin: 0 .5em;
     padding: var(--p-item);
     transition: .3s ease-in-out;
 }
@@ -421,6 +427,7 @@ section {
     left: 0;
     opacity: 1;
 }
+
 
 
 @media screen and (min-width: 700px) {
@@ -548,9 +555,9 @@ section {
 
 .info_card {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
-    width: 0;
+    width: 100%;
     height: 0;
     padding: 1rem .5rem;
     background-color: rgba(15, 15, 15, 0.75);
@@ -561,7 +568,7 @@ section {
     transition: .3s ease-in-out;
 }
 .body_card:hover .info_card {
-    width: 100%;
+    top: 0;
     height: calc(100% - 67px);
     opacity: 1;
 }
@@ -590,6 +597,7 @@ section {
 }
 
 .card h2 {
+    font-size: 1.2rem;
     padding: 1rem;
     white-space: nowrap;
     overflow: hidden;
@@ -601,6 +609,9 @@ section {
     justify-content: center;
     align-items: center;
     margin-top: 1rem;
+}
+.glider-track {
+    -webkit-tap-highlight-color: transparent;
 }
 
 .btn_prev,
@@ -702,12 +713,136 @@ section {
 }
 
 @media screen and (min-width: 1024px) {
+    .logo_header {
+        font-size: 2rem;
+    }
     .info_movie_bg {
         width: 60%;
     }
     .card {
         max-width: none;
         width: auto;
+    }
+}
+
+/* RESOLUCIONES ALTAS */
+@media screen and ((min-width: 1921px) and (max-width: 2559px)) {
+    .logo_header {
+        font-size: 2.5rem;
+    }
+    .menu_header a,
+    #btn_genres {
+        font-size: 1.25rem;
+    }
+    .search_header input {
+        font-size: 1.125rem;
+    }
+    .search_header button {
+        font-size: 1.25rem;
+        padding: .5em 0;
+        width: 50px;
+    }
+    /* INFO MOVIE BG */
+    .info_movie_bg h2 {
+        font-size: 2.5rem;
+    }
+    .details_movie_bg,
+    #synopsis_movie_bg {
+        font-size: 1.25rem;
+    }
+    #btn_play_movie_bg {
+        font-size: 1.5rem;
+    }
+    #btn_play_movie_bg i {
+        font-size: 4rem;
+    }
+    #btn_play_trailer_bg {
+        font-size: 1.5rem;
+    }
+    /* NAV CATEGORY */
+    .category_items li {
+        font-size: 1.5rem;
+    }
+    /* SLIDE */
+    #category_select {
+        font-size: 2rem;
+    }
+    .title_category > a {
+        font-size: 1.25rem;
+    }
+    /* slide: cards */
+    .info_card ul,
+    .info_card p {
+        font-size: 1.125rem;
+    }
+    .body_card h2 {
+        font-size: 1.5rem;
+    }
+}
+@media screen and (min-width: 2560px){
+    .logo_header {
+        font-size: 2.5rem;
+    }
+    .search_header input {
+        font-size: 1.25rem;
+    }
+    .search_header button {
+        font-size: 1.5rem;
+        padding: .5em 0;
+        width: 50px;
+    }
+
+    /* SECTIONS */
+    .cont_header,
+    .cont_info,
+    .cont_slider_movies {
+        max-width: 1920px;
+    }
+    /*****************/
+
+    .menu_header a,
+    #btn_genres {
+        /* font-size: 1.25rem; */
+        font-size: 1.375rem;
+    }
+    /* INFO MOVIE BG */
+    .info_movie_bg h2 {
+        font-size: 3rem;
+    }
+    .details_movie_bg,
+    #synopsis_movie_bg {
+        /* font-size: 1.25rem; */
+        font-size: 1.375rem;
+    }
+    #btn_play_movie_bg {
+        font-size: 1.75rem;
+    }
+    #btn_play_movie_bg i {
+        font-size: 4rem;
+    }
+    #btn_play_trailer_bg {
+        font-size: 1.75rem;
+    }
+    /* NAV CATEGORY */
+    .category_items li {
+        font-size: 1.75rem;
+        margin: 0 .75em;
+    }
+    /* SLIDE */
+    #category_select {
+        font-size: 2.25rem;
+    }
+    .title_category > a {
+        /* font-size: 1.25rem; */
+        font-size: 1.375rem;
+    }
+    /* slide: cards */
+    .info_card ul,
+    .info_card p {
+        font-size: 1.25rem;
+    }
+    .body_card h2 {
+        font-size: 1.5rem;
     }
 }
 
