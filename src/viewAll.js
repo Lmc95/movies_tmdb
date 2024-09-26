@@ -93,7 +93,7 @@ const createCardGrid = (imgMovie, titleMovie, raitingMovie, releaseMovie, sypMov
 const viewAllCategory = async () => {
   console.log(storageCategory);
   try {
-    const testCategory = await fetch(`${appData.urlApi}${storageCategory}?api_key=${appData.apiKey}&language=es-ES&page=${currentPage}`)
+    const testCategory = await fetch(`${appData.urlApi}${storageCategory}?api_key=${appData.apiKey}&page=${currentPage}`)
     const resTest = await testCategory.json();
     console.log(resTest);
 
