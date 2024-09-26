@@ -185,6 +185,11 @@ header {
     color: var(--main-light);
     font-weight: 600;
 }
+#total_pages {
+    margin-left: 1rem;
+    color: var(--blue-light);
+    cursor: pointer;
+}
 
 
 /* RESPONSIVE */

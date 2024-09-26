@@ -3,7 +3,14 @@ import { appData } from "./data.js";
 const titleGrid = document.getElementById('title_grid');
 const gridViewAll = document.querySelector('.grid_movies_all');
 
+// Paginación
+const numPage = document.querySelector('.num_page');
+const totalPages = document.getElementById('total_pages');
+const btnBack = document.getElementById('btn_back');
+const btnNext = document.getElementById('btn_next');
 let currentPage = 1;
+
+
 let storageCategory;
 
 // Si no está la key categoria se mostrara por default "now playing" caso contrario se mostrara la categoria seleccionada anteriormente en "index.html"
@@ -31,6 +38,14 @@ switch (storageCategory) {
   default:
     console.log('Error categoria no disponible.')
     break;
+}
+
+const pagination = () => {
+  numPage.textContent = currentPage;
+  setTimeout(() => {
+    gridViewAll.innerHTML = '';
+    viewAllCategory();
+  }, 500);
 }
 
 // Validar urls, le pasaremos la categoria que se encuentra en el sessionStorage.
@@ -61,7 +76,11 @@ const createCardGrid = (imgMovie, titleMovie, raitingMovie, releaseMovie, sypMov
   cardBodyMovie.appendChild(infoCardMovie);
 
   let cardImgBody = document.createElement('img');
-  cardImgBody.src = imgMovie;
+  if (imgMovie == appData.urlImage + 'null') {
+    cardImgBody.src = '/images/not_image.svg';
+  } else {
+    cardImgBody.src = imgMovie;
+  }
   cardBodyMovie.appendChild(cardImgBody);
 
   let cardMovieH2 = document.createElement('h2');
@@ -78,8 +97,33 @@ const viewAllCategory = async () => {
     const resTest = await testCategory.json();
     console.log(resTest);
 
+    numPage.textContent = currentPage;
+
+    // Límite de 500 páginas, (A revisar si hay manera de cambiar el límite de 500)
+    if(resTest.total_pages > 500) {
+      totalPages.textContent = 500;
+    }else {
+      totalPages.textContent = resTest.total_pages;
+    }
+
+    if (currentPage == 1) {
+      btnBack.disabled = true;
+      console.log('BACK OFF')
+    } else {
+      btnBack.disabled = false;
+      console.log('BACK ON')
+    }
+
+    if (currentPage >= resTest.total_pages) {
+      btnNext.disabled = true;
+      console.log('NEXT OFF')
+    } else {
+      btnNext.disabled = false;
+      console.log('NEXT ON')
+    }
+
     resTest.results.forEach((movie, index) => {
-      createCardGrid(appData.urlImage + movie.poster_path, movie.title, Math.round(movie.vote_average), movie.release_date.slice(0,4), movie.overview);
+      createCardGrid(appData.urlImage + movie.poster_path, movie.title, Math.round(movie.vote_average), movie.release_date.slice(0, 4), movie.overview);
     })
 
 
@@ -94,7 +138,7 @@ if (validUrl(storageCategory)) {
   // Una espera para cargar el grid
   setTimeout(() => {
     viewAllCategory();
-  }, 1500);
+  }, 1000);
 } else {
   console.log('ERROR: url no válida.')
 }
@@ -132,3 +176,33 @@ appData.genreList.forEach(item => {
     appData.cerrarGenre();
   })
 })
+
+const valueSearchPage = document.querySelector('.search_page');
+const btnSearchPage = document.getElementById('btn_num_page');
+
+// EVENT: cambiar página anterior y siguiente.
+btnBack.addEventListener('click', () => {
+  currentPage--;
+  pagination();
+})
+btnNext.addEventListener('click', () => {
+  currentPage++;
+  pagination();
+})
+
+// EVENT: filtrar página ingresando un número.
+btnSearchPage.addEventListener('click', () => {
+  let pageValue = parseInt(valueSearchPage.value);
+  valueSearchPage.value = '';
+  currentPage = pageValue;
+  pagination();
+})
+valueSearchPage.addEventListener('keydown', (e) => {
+  if (e.key == 'Enter') {
+    let pageValue = parseInt(valueSearchPage.value);
+    valueSearchPage.value = '';
+    currentPage = pageValue;
+    pagination();
+  }
+})
+
