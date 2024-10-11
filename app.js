@@ -1,6 +1,5 @@
 import { appData } from "./src/data.js";
 
-
 const contGlider = new Glider(document.querySelector('.glider'), {
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -60,7 +59,8 @@ const contGlider = new Glider(document.querySelector('.glider'), {
 
 });
 
-
+// Carga el background en la pagina Home.
+appData.bgMovie();
 
 // Abre o cierra el menu de nav_category (mobile)
 appData.btnMenu.addEventListener('click', () => {
@@ -77,7 +77,6 @@ appData.btnMenu.addEventListener('click', () => {
   }
 })
 
-
 // Actualiza el titulo del contenedor nav_category.
 appData.menuList.forEach((item, index) => {
   item.addEventListener('click', () => {
@@ -85,9 +84,9 @@ appData.menuList.forEach((item, index) => {
     // En base a la opcion seleccionada se cambiar el titulo por ese nombre.
     appData.updateCategory(index);
 
-    if(contGlider) {
+    if (contGlider) {
       contGlider.scrollItem(0);
-    }else {
+    } else {
       console.error(error);
     }
   })
@@ -96,32 +95,20 @@ appData.menuList.forEach((item, index) => {
 // EVENT: abrir o cerrar menu del header (solo movil).
 appData.btnHeader.addEventListener('click', () => {
   if (!appData.menuHeader.classList.contains('menu_active')) {
-    appData.menuHeader.classList.add('menu_active');
-    appData.barsHeader.classList.remove('fa-bars');
-    appData.barsHeader.classList.add('fa-xmark');
-    appData.searchHeader.classList.add('search_active');
+    appData.openMenu();
     document.body.style.overflow = 'hidden';
   } else {
-    appData.menuHeader.classList.remove('menu_active');
-    appData.barsHeader.classList.remove('fa-xmark');
-    appData.barsHeader.classList.add('fa-bars');
-    appData.searchHeader.classList.remove('search_active');
+    appData.closeMenu();
     document.body.style.overflow = 'auto';
   }
 })
 
-
-// EVENT: abrir o cerrar menu de la opcion GENRE.
-appData.btnGenres.addEventListener('click', () => {
-  if (!appData.menuGenres.classList.contains('genres_active')) {
-    appData.abrirGenre();
-  } else {
-    appData.cerrarGenre();
+// EVENT: buscador de películas por nombre.
+appData.searchMovie.addEventListener('keypress', (e) => {
+  appData.searchON(e);
+  // REDIRECCIONAR a la página que muestra los resultados de la búsqueda.
+  if(e.key == 'Enter'){
+    window.location.href = "./src/resultsSearch.html";
   }
-})
-
-appData.genreList.forEach(item => {
-  item.addEventListener('click', () => {
-    appData.cerrarGenre();
-  })
+  // sessionStorage.setItem('resultsMovie', `${valueSearch}`);
 })

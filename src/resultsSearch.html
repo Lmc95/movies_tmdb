@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.9/glider.min.css">
     <!-- STYLES CSS -->
     <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="./viewAll.css">
+    <link rel="stylesheet" href="./resultsSearch.css">
 </head>
 <body>
     <header>
@@ -42,39 +42,22 @@
         </div>
     </header>
 
-    <main class="main_all">
+    <main class="main_results">
+        <!-- Agregar un diseño que en caso de no obtener un resultado válido mostrar "sin resultados" -->
 
-        <div class="cont_movies_all">
-            <div class="title_movies_all">
-                <h2 id="title_grid">NOW PLAYING</h2>
+        <section class="cont_results">
+            <h2>Results for <span id="title_result"></span></h2>
+            <p id="no_results">No results found for <span id="no_results_search">John wick</span></p>
+            <div class="list_results">
+                <!-- Se mostraran los resultados dinamicamente -->
             </div>
-            <div class="grid_movies_all">
-                <!-- 
-                PRUEBA. 
-                 Intentaremos que luego sean creadas dinamicamente desde js 
-                 -->
-            </div>
-            
-            <div class="cont_pagination">
-                <button id="btn_back">
-                    <i class="fa-solid fa-angle-left"></i>
-                </button>
-                <div class="pages">
-                    <p class="num_page"></p>
-                    <label for="search_page"></label>
-                    <input type="number" min="1" name="search_page" class="search_page" id="search_page" placeholder="...">
-                    <button id="btn_num_page">GO</button>
-                    <p id="total_pages"></p>
-                </div>
-                <button id="btn_next">
-                    <i class="fa-solid fa-angle-right"></i>
-                </button>
-            </div>
-        </div>
+        
+            <button id="page_num">Cargar más</button>
+        </section>
 
     </main>
     
     <script type="module" src="./data.js"></script>
-    <script type="module" src="./viewAll.js"></script>
+    <script type="module" src="./resultsSearch.js"></script>
 </body>
 </html>

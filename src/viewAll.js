@@ -1,16 +1,7 @@
 import { appData } from "./data.js";
 
-const titleGrid = document.getElementById('title_grid');
-const gridViewAll = document.querySelector('.grid_movies_all');
 
-// Paginación
-const numPage = document.querySelector('.num_page');
-const totalPages = document.getElementById('total_pages');
-const btnBack = document.getElementById('btn_back');
-const btnNext = document.getElementById('btn_next');
 let currentPage = 1;
-
-
 let storageCategory;
 
 // Si no está la key categoria se mostrara por default "now playing" caso contrario se mostrara la categoria seleccionada anteriormente en "index.html"
@@ -24,16 +15,16 @@ if (!sessionStorage.getItem('categoria')) {
 // Actualiza el título del grid viewAll.
 switch (storageCategory) {
   case appData.urlCategory.nowPlaying:
-    titleGrid.textContent = 'NOW PLAYING';
+    appData.titleGrid.textContent = 'NOW PLAYING';
     break;
   case appData.urlCategory.popular:
-    titleGrid.textContent = 'POPULAR';
+    appData.titleGrid.textContent = 'POPULAR';
     break;
   case appData.urlCategory.topRated:
-    titleGrid.textContent = 'TOP RATED';
+    appData.titleGrid.textContent = 'TOP RATED';
     break;
   case appData.urlCategory.upcoming:
-    titleGrid.textContent = 'UPCOMING';
+    appData.titleGrid.textContent = 'UPCOMING';
     break;
   default:
     console.log('Error categoria no disponible.')
@@ -41,9 +32,9 @@ switch (storageCategory) {
 }
 
 const pagination = () => {
-  numPage.textContent = currentPage;
+  appData.numPage.textContent = currentPage;
   setTimeout(() => {
-    gridViewAll.innerHTML = '';
+    appData.gridViewAll.innerHTML = '';
     viewAllCategory();
   }, 500);
 }
@@ -87,8 +78,9 @@ const createCardGrid = (imgMovie, titleMovie, raitingMovie, releaseMovie, sypMov
   cardMovieH2.textContent = titleMovie
   cardMovie.appendChild(cardMovieH2);
 
-  gridViewAll.appendChild(cardMovie);
+  appData.gridViewAll.appendChild(cardMovie);
 }
+
 
 const viewAllCategory = async () => {
   console.log(storageCategory);
@@ -97,28 +89,28 @@ const viewAllCategory = async () => {
     const resTest = await testCategory.json();
     console.log(resTest);
 
-    numPage.textContent = currentPage;
+    appData.numPage.textContent = currentPage;
 
     // Límite de 500 páginas, (A revisar si hay manera de cambiar el límite de 500)
-    if(resTest.total_pages > 500) {
-      totalPages.textContent = 500;
-    }else {
-      totalPages.textContent = resTest.total_pages;
+    if (resTest.total_pages > 500) {
+      appData.totalPages.textContent = 500;
+    } else {
+      appData.totalPages.textContent = resTest.total_pages;
     }
 
     if (currentPage == 1) {
-      btnBack.disabled = true;
+      appData.btnBack.disabled = true;
       console.log('BACK OFF')
     } else {
-      btnBack.disabled = false;
+      appData.btnBack.disabled = false;
       console.log('BACK ON')
     }
 
     if (currentPage >= resTest.total_pages) {
-      btnNext.disabled = true;
+      appData.btnNext.disabled = true;
       console.log('NEXT OFF')
     } else {
-      btnNext.disabled = false;
+      appData.btnNext.disabled = false;
       console.log('NEXT ON')
     }
 
@@ -162,30 +154,15 @@ appData.btnHeader.addEventListener('click', () => {
 })
 
 
-// EVENT: abrir o cerrar menu de la opcion GENRE.
-appData.btnGenres.addEventListener('click', () => {
-  if (!appData.menuGenres.classList.contains('genres_active')) {
-    appData.abrirGenre();
-  } else {
-    appData.cerrarGenre();
-  }
-})
-
-appData.genreList.forEach(item => {
-  item.addEventListener('click', () => {
-    appData.cerrarGenre();
-  })
-})
-
 const valueSearchPage = document.querySelector('.search_page');
 const btnSearchPage = document.getElementById('btn_num_page');
 
 // EVENT: cambiar página anterior y siguiente.
-btnBack.addEventListener('click', () => {
+appData.btnBack.addEventListener('click', () => {
   currentPage--;
   pagination();
 })
-btnNext.addEventListener('click', () => {
+appData.btnNext.addEventListener('click', () => {
   currentPage++;
   pagination();
 })
@@ -206,3 +183,9 @@ valueSearchPage.addEventListener('keydown', (e) => {
   }
 })
 
+
+// EVENT: buscador de películas por nombre.
+appData.searchMovie.addEventListener('keypress', (e) => {
+  appData.searchON(e);
+  window.location.href = './resultsSearch.html'
+})

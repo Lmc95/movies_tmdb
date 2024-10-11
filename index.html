@@ -34,33 +34,6 @@
             </div>
             <nav class="menu_header">
                 <a href="#">HOME</a>
-                <div class="cont_genres">
-                    <button id="btn_genres">GENRES
-                        <i class="fa-solid fa-caret-down"></i>
-                    </button>
-                    <ul class="menu_genres">
-                        <!-- SE CREARAN DINAMICAMENTE DESDE JS (Actualmente esta para prueba de esta manera)-->
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Adventure</a></li>
-                        <li><a href="#">Animation</a></li>
-                        <li><a href="#">Comedy</a></li>
-                        <li><a href="#">Crime</a></li>
-                        <li><a href="#">Documentary</a></li>
-                        <li><a href="#">Drama</a></li>
-                        <li><a href="#">Family</a></li>
-                        <li><a href="#">Fantasy</a></li>
-                        <li><a href="#">History</a></li>
-                        <li><a href="#">Horror</a></li>
-                        <li><a href="#">Music</a></li>
-                        <li><a href="#">Mystery</a></li>
-                        <li><a href="#">Romance</a></li>
-                        <li><a href="#">Science Fiction</a></li>
-                        <li><a href="#">TV Movie</a></li>
-                        <li><a href="#">Thriller</a></li>
-                        <li><a href="#">War</a></li>
-                        <li><a href="#">Western</a></li>
-                    </ul>
-                </div>
             </nav>
             <div class="search_header">
                 <label for="search" name="search"></label>
@@ -76,28 +49,33 @@
 
         <div class="bg_main">
             <div class="gradient_img"></div>
-            <img src="/images/images_movies_figma/bg_movie_01.jpg" alt="">
+            <!-- bg -->
         </div>
 
         <section class="cont_bg_main">
             <div class="cont_info">
                 <div class="info_movie_bg">
-                    <h2>Title</h2>
+                    <h2 id="title_movie_bg">
+                        <!-- Título de película -->
+                    </h2>
                     <ul class="details_movie_bg">
                         <li id="raiting">
-                            <i class="fa-regular fa-star"></i>0/10
+                            <!-- Valoración de película -->
                         </li>
                         <li id="time_movie">
-                            <i class="fa-regular fa-clock"></i>2:30m
+                            <!-- Duración de película -->
                         </li>
                         <li id="release">
-                            <i class="fa-regular fa-calendar"></i>2014
+                            <!-- Año de lanzamiento -->
                         </li>
                         <li>|</li>
-                        <li id="genre_movie_bg">Action - Crime</li>
+                        <li id="genre_movie_bg">
+                            <!-- Género de película -->
+                        </li>
                     </ul>
-                    <p id="synopsis_movie_bg">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum ipsa architecto excepturi eaque
-                        molestiae debitis quidem quos cum fugiat quisquam.</p>
+                    <p id="synopsis_movie_bg">
+                        <!-- Resumen de pelicula -->
+                    </p>
                     <div class="buttons_bg_movie">
                         <button id="btn_play_movie_bg">
                             <i class="fa-regular fa-circle-play"></i>PLAY
