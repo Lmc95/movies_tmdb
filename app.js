@@ -104,10 +104,16 @@ appData.btnHeader.addEventListener('click', () => {
 })
 
 // EVENT: buscador de películas por nombre.
+appData.btnSearch.addEventListener('click', (e) => {
+  appData.searchON(e);
+  window.location.href = "./src/resultsSearch.html";
+  console.log('CLICK')
+})
+
 appData.searchMovie.addEventListener('keypress', (e) => {
   appData.searchON(e);
   // REDIRECCIONAR a la página que muestra los resultados de la búsqueda.
-  if(e.key == 'Enter'){
+  if (e.key == 'Enter') {
     window.location.href = "./src/resultsSearch.html";
   }
   // sessionStorage.setItem('resultsMovie', `${valueSearch}`);

@@ -71,6 +71,7 @@ main {
     top: 0;
     left: 0;
     z-index: 110;
+    mask-image: linear-gradient(to bottom, black, transparent);
 }
 
 .bg_main img {
@@ -79,7 +80,6 @@ main {
     height: 80vh;
     max-height: 1440px;
     object-fit: cover;
-    mask-image: linear-gradient(to bottom, black, transparent);
 }
 
 .gradient_img {

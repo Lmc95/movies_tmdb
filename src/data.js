@@ -16,6 +16,7 @@ const barsHeader = document.querySelector('#btn_header i');
 // SEARCH HEADER
 const searchHeader = document.querySelector('.search_header');
 const searchMovie = document.getElementById('search');
+const btnSearch = document.getElementById('btn_search_header');
 // HOME MOVIE bg
 const bgHome = document.querySelector('.bg_main');
 const titleHomeMovie = document.getElementById('title_movie_bg');
@@ -220,6 +221,7 @@ const appData = {
     barsHeader,
     searchHeader,
     searchMovie,
+    btnSearch,
     btnMenu,
     menu,
     menuList,

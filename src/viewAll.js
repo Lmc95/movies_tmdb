@@ -139,16 +139,10 @@ if (validUrl(storageCategory)) {
 // EVENT: abrir o cerrar menu del header (solo movil).
 appData.btnHeader.addEventListener('click', () => {
   if (!appData.menuHeader.classList.contains('menu_active')) {
-    appData.menuHeader.classList.add('menu_active');
-    appData.barsHeader.classList.remove('fa-bars');
-    appData.barsHeader.classList.add('fa-xmark');
-    appData.searchHeader.classList.add('search_active');
+    appData.openMenu();
     document.body.style.overflow = 'hidden';
   } else {
-    appData.menuHeader.classList.remove('menu_active');
-    appData.barsHeader.classList.remove('fa-xmark');
-    appData.barsHeader.classList.add('fa-bars');
-    appData.searchHeader.classList.remove('search_active');
+    appData.closeMenu();
     document.body.style.overflow = 'auto';
   }
 })
@@ -185,7 +179,13 @@ valueSearchPage.addEventListener('keydown', (e) => {
 
 
 // EVENT: buscador de películas por nombre.
-appData.searchMovie.addEventListener('keypress', (e) => {
+appData.btnSearch.addEventListener('click', (e) => {
   appData.searchON(e);
   window.location.href = './resultsSearch.html'
+})
+appData.searchMovie.addEventListener('keypress', (e) => {
+  appData.searchON(e);
+  if(e.key == 'Enter'){
+    window.location.href = './resultsSearch.html'
+  }
 })

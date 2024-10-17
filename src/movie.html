@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,10 +18,13 @@
     <!-- GLIDE.js -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.9/glider.min.css">
     <!-- STYLES CSS -->
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="./resultsSearch.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./movie.css">
+
 </head>
+
 <body>
+
     <header>
         <div class="cont_header">
             <div class="logo_btn">
@@ -42,22 +46,20 @@
         </div>
     </header>
 
-    <main class="main_results">
-        <!-- Agregar un diseño que en caso de no obtener un resultado válido mostrar "sin resultados" -->
-
-        <section class="cont_results">
-            <h2>Results for <span id="title_result"></span></h2>
-            <p id="no_results">No results found for <span id="no_results_search"></span></p>
-            <div class="list_results">
-                <!-- Se mostraran los resultados dinamicamente -->
-            </div>
-        
-            <button id="page_num">Cargar más</button>
+    <main>
+        <div class="bg_main_play">
+            <div class="gradient_img_play"></div>
+            <!-- bg -->
+        </div>
+        <section class="cont_movie_play">
+            <!-- Cards -->
+             <!-- iframe video youtube -->
         </section>
 
     </main>
-    
+
     <script type="module" src="./data.js"></script>
-    <script type="module" src="./resultsSearch.js"></script>
+    <script type="module" src="./movie.js"></script>
 </body>
+
 </html>

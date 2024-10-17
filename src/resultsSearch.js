@@ -6,9 +6,10 @@ const contResults = document.querySelector('.cont_results')
 const page = document.getElementById('page_num');
 let numP = 1;
 
-const cardsResult = (imgRes, titleRes, raitingRes, timeRes, releaseRes, genreRes, synRes) => {
+const cardsResult = (imgRes, titleRes, raitingRes, timeRes, releaseRes, genreRes, synRes, idRes) => {
   let card = document.createElement('div');
   card.classList.add('card_result');
+  card.setAttribute('data-id', idRes);
 
   let figureResult = document.createElement('figure');
   figureResult.id = 'img_card_result';
@@ -31,9 +32,10 @@ const cardsResult = (imgRes, titleRes, raitingRes, timeRes, releaseRes, genreRes
   let ulDetailsResult = document.createElement('ul');
   ulDetailsResult.classList.add('details_movie_result');
   ulDetailsResult.innerHTML = `
-  <li id="raiting_result">${raitingRes}</li>
-  <li id="time_movie_result">${timeRes}</li>
-  <li id="release_result">${releaseRes}</li>
+  <li id="raiting_result"><i class="fa-regular fa-star"></i>${raitingRes}</li>
+  <li id="time_movie_result"><i class="fa-regular fa-clock"></i>${timeRes}</li>
+  <li id="release_result"><i class="fa-regular fa-calendar"></i>${releaseRes}</li>
+  <li>|</li>
   <li id="genre_movie_result">${genreRes}</li>`;
   infoResult.appendChild(ulDetailsResult);
 
@@ -62,8 +64,7 @@ const detailResult = async (resultId) => {
     })
 
     cardsResult(
-      'http://image.tmdb.org/t/p/w300' + datRes.poster_path, datRes.title, Math.round(datRes.vote_average), `${Math.floor(datRes.runtime / 60)}h:${(datRes.runtime % 60).toString().padStart(2, 0)}m`, datRes.release_date.slice(0, 4), genresResult.slice(0, -2), datRes.overview
-    )
+      'http://image.tmdb.org/t/p/w300' + datRes.poster_path, datRes.title, Math.round(datRes.vote_average), `${Math.floor(datRes.runtime / 60)}h:${(datRes.runtime % 60).toString().padStart(2, 0)}m`, datRes.release_date.slice(0, 4), genresResult.slice(0, -2), datRes.overview, resultId);
 
   } catch (error) {
     console.error(error, 'Error al obtener los detalles de los resultados')
@@ -78,6 +79,7 @@ const getResultMovie = async (movie, pageNum) => {
 
     console.log(dataResult);
 
+    // Muestra un mensaje de "resultados no encontrados"
     if (dataResult.results.length > 0) {
       noResults.style.display = 'none';
       // Crear cartas dinamicamente
@@ -87,6 +89,7 @@ const getResultMovie = async (movie, pageNum) => {
       });
     } else {
       noResults.style.display = 'block';
+      document.getElementById('no_results_search').textContent = movie;
     }
 
     // Botón "Mostrar más películas".
@@ -119,19 +122,47 @@ const cargar = (nP) => {
 }
 cargar(numP)
 
+
+const movie1 = async (idMovie) => {
+  try {
+    
+    const getVideo = await fetch(`https://api.themoviedb.org/3/movie/${idMovie}/videos?api_key=${appData.apiKey}&language=en-US`)
+    const resVideo = await getVideo.json();
+
+    console.log(resVideo);
+
+    // EJEMPLO:
+    // url de trailer para mostrar
+    console.log(`https://www.youtube.com/watch?v=${resVideo.results[0].key}`)
+
+  } catch (error) {
+    console.error(error, 'Error al obtener video de película')
+  }
+}
+
+resList.addEventListener('click', (e) => {
+  const cardM = e.target.closest('.card_result');
+  
+  if(cardM) {
+    const cardId = cardM.getAttribute('data-id');
+    console.log('click en card');
+
+    movie1(cardId);
+
+    // Guardar id de película y redireccionar a la página de la misma.
+    sessionStorage.setItem('idMovie', cardId);
+    // redireccionar a página
+    window.location.href = './movie.html'
+  }
+})
+
+
 appData.btnHeader.addEventListener('click', () => {
-  // ESTAS CONDICIONES DEBEN IR EN DATA.JS Y LLAMARLAS EN CADA PAGINA
   if (!appData.menuHeader.classList.contains('menu_active')) {
-    appData.menuHeader.classList.add('menu_active');
-    appData.barsHeader.classList.remove('fa-bars');
-    appData.barsHeader.classList.add('fa-xmark');
-    appData.searchHeader.classList.add('search_active');
+    appData.openMenu();
     document.body.style.overflow = 'hidden';
   } else {
-    appData.menuHeader.classList.remove('menu_active');
-    appData.barsHeader.classList.remove('fa-xmark');
-    appData.barsHeader.classList.add('fa-bars');
-    appData.searchHeader.classList.remove('search_active');
+    appData.openMenu();
     document.body.style.overflow = 'auto';
   }
 })
@@ -144,12 +175,19 @@ page.addEventListener('click', () => {
 })
 
 // EVENT: buscador de películas por nombre.
+appData.btnSearch.addEventListener('click', (e) => {
+  appData.searchON(e);
+  console.log('Cargando...')
+    setTimeout(() => {
+      location.reload();
+    }, 2000);
+})
+
 appData.searchMovie.addEventListener('keypress', (e) => {
   appData.searchON(e);
 
   // En caso de usar el buscador desde esta página se recargara.
   if (e.key == 'Enter') {
-    let number = 1;
     // mostrar "cargando..." y luego redireccionamos ya con los datos cargados.
     console.log('Cargando...')
     setTimeout(() => {
