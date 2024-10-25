@@ -6,7 +6,7 @@ async function fetchApiKey() {
 }
 
 fetchApiKey().then(apiKey => {
-    const apiKey = apiKey;
+    const api_Key = apiKey;
 });
 
 
@@ -83,12 +83,12 @@ const closeMenu = () => {
 
 const bgMovie = async () => {
     try {
-        const getBg = await fetch(`${urlApi}/movie/popular?api_key=${apiKey}&page=1`);
+        const getBg = await fetch(`${urlApi}/movie/popular?api_key=${api_Key}&page=1`);
         const resBg = await getBg.json();
         const resultMovie = resBg.results[0];
 
         if (resBg) {
-            const detailsMovie = await fetch(`${urlApi}/movie/${resultMovie.id}?api_key=${apiKey}`);
+            const detailsMovie = await fetch(`${urlApi}/movie/${resultMovie.id}?api_key=${api_Key}`);
             const resDetailsMovie = await detailsMovie.json();
             console.log(resDetailsMovie);
 
@@ -124,7 +124,7 @@ const bgMovie = async () => {
 // Obtiene lista de películas según la categoría que le pasemos.
 const slideMovies = async (category) => {
     try {
-        const getMovies = await fetch(`${urlApi}${category}?api_key=${apiKey}`)
+        const getMovies = await fetch(`${urlApi}${category}?api_key=${api_Key}`)
         const resMovies = await getMovies.json();
 
         // Obtiene las primeras 10 películas de la lista.
@@ -157,7 +157,7 @@ slideMovies(urlCategory.nowPlaying)
 
 const searchingMovie = async (userMovie) => {
     try {
-        const movieS = await fetch(`${urlApi}/search/movie?query=${userMovie}&api_key=${apiKey}&page=1`);
+        const movieS = await fetch(`${urlApi}/search/movie?query=${userMovie}&api_key=${api_Key}&page=1`);
         const resMovieS = await movieS.json();
         console.log(resMovieS);
 
@@ -233,7 +233,7 @@ const searchON = (element) => {
 
 const appData = {
     // Api.
-    apiKey,
+    api_Key,
     urlApi,
     urlCategory,
     urlImage,
