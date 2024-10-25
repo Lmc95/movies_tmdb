@@ -6,13 +6,12 @@ async function fetchApiKey() {
 }
 
 fetchApiKey().then(apiKey => {
-    console.log(apiKey); // Ahora debería funcionar sin errores
-    // Usa la apiKey para tus solicitudes a la API
+    const apiKey = apiKey;
 });
 
 
 // Esta api solo se utiliza para desarrollo.
-const apiKey = '0fd03a39b7ac0b30c7ab5e52ebb50d49';
+// const apiKey = '0fd03a39b7ac0b30c7ab5e52ebb50d49';
 const urlApi = 'https://api.themoviedb.org/3';
 const urlImage = 'http://image.tmdb.org/t/p/w500'
 const urlCategory = {
