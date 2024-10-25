@@ -78,15 +78,28 @@ const getResultMovie = async (movie, pageNum) => {
     const dataResult = await getResult.json();
 
     console.log(dataResult);
-
+    let resultList = [];
+    
     // Muestra un mensaje de "resultados no encontrados"
     if (dataResult.results.length > 0) {
       noResults.style.display = 'none';
       // Crear cartas dinamicamente
       dataResult.results.forEach(result => {
-        detailResult(result.id)
-        console.log(result.id)
+        // Se filtra que solo las películas con info sean almacenadas en un array.
+        if(!result.backdrop_path || result.video){
+          //
+        }else {
+          resultList.push(result.id)
+          console.log(result.id)
+        }
       });
+
+      // Se cargan las películas que fueron almacenadas anteriormente
+      resultList.forEach(item => {
+        detailResult(item)
+      })
+
+
     } else {
       noResults.style.display = 'block';
       document.getElementById('no_results_search').textContent = movie;

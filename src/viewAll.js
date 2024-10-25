@@ -1,6 +1,5 @@
 import { appData } from "./data.js";
 
-
 let currentPage = 1;
 let storageCategory;
 
@@ -46,7 +45,7 @@ const validUrl = (urlCategory) => {
 }
 
 // Crear carta
-const createCardGrid = (imgMovie, titleMovie, raitingMovie, releaseMovie, sypMovie) => {
+const createCardGrid = (imgMovie, titleMovie, raitingMovie, releaseMovie, sypMovie, idMovie) => {
   let cardMovie = document.createElement('div');
   cardMovie.classList.add('card_movie');
 
@@ -79,11 +78,13 @@ const createCardGrid = (imgMovie, titleMovie, raitingMovie, releaseMovie, sypMov
   cardMovie.appendChild(cardMovieH2);
 
   appData.gridViewAll.appendChild(cardMovie);
+  cardMovie.setAttribute('data-id', idMovie)
 }
 
 
 const viewAllCategory = async () => {
   console.log(storageCategory);
+  
   try {
     const testCategory = await fetch(`${appData.urlApi}${storageCategory}?api_key=${appData.apiKey}&page=${currentPage}`)
     const resTest = await testCategory.json();
@@ -114,8 +115,14 @@ const viewAllCategory = async () => {
       console.log('NEXT ON')
     }
 
+
     resTest.results.forEach((movie, index) => {
-      createCardGrid(appData.urlImage + movie.poster_path, movie.title, Math.round(movie.vote_average), movie.release_date.slice(0, 4), movie.overview);
+      if(!movie.backdrop_path){
+        console.log('No contiene información.')
+        console.log(movie)
+      }else {
+        createCardGrid(appData.urlImage + movie.poster_path, movie.title, Math.round(movie.vote_average), movie.release_date.slice(0, 4), movie.overview, movie.id);
+      }
     })
 
 
@@ -177,6 +184,15 @@ valueSearchPage.addEventListener('keydown', (e) => {
   }
 })
 
+// EVENT: redireccionar a película seleccionada.
+appData.gridViewAll,addEventListener('click', (e) => {
+  if(e.target.tagName == 'H2'){
+    console.log(e.target)
+    const cMovie = e.target.closest('.card_movie');
+    sessionStorage.setItem('idMovie', cMovie.dataset.id);
+    window.location.href = './movie.html';
+  }
+})
 
 // EVENT: buscador de películas por nombre.
 appData.btnSearch.addEventListener('click', (e) => {
@@ -185,7 +201,7 @@ appData.btnSearch.addEventListener('click', (e) => {
 })
 appData.searchMovie.addEventListener('keypress', (e) => {
   appData.searchON(e);
-  if(e.key == 'Enter'){
+  if (e.key == 'Enter') {
     window.location.href = './resultsSearch.html'
   }
 })

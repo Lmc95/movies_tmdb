@@ -37,7 +37,7 @@
             </nav>
             <div class="search_header">
                 <label for="search" name="search"></label>
-                <input type="text" name="search" id="search" placeholder="Search...">
+                <input type="text" name="search" id="search" placeholder="Search..." autocomplete="off">
                 <button id="btn_search_header">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -46,11 +46,13 @@
     </header>
 
     <main>
+        
 
         <div class="bg_main">
             <div class="gradient_img"></div>
             <!-- bg -->
         </div>
+        
 
         <section class="cont_bg_main">
             <div class="cont_info">
@@ -97,7 +99,7 @@
         </section>
         <div class="gradient_slider"></div>
         <section class="cont_slider_movies">
-
+            <img class="bg_slider" src="/images/images_movies_figma/bg_movies.jpg" alt="">
             <div class="title_category">
                 <h2 id="category_select">NOW PLAYING</h2>
                 <span></span>
@@ -161,7 +163,14 @@
             </div>
 
         </section>
+
     </main>
+
+    <footer>
+        <div class="cont_footer">
+            <h1>LOGO</h1>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.9/glider.min.js"></script>
     <script type="module" src="./src/data.js"></script>

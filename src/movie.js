@@ -37,14 +37,17 @@ const movieCard = (posterM, titleM, raitingM, timeM, releaseM, genreM, synM, tra
     </div>
     `;
 
+    let contIframe = document.createElement('div');
+    contIframe.classList.add('cont_video');
     let iframeM = document.createElement('iframe');
     iframeM.src = `https://www.youtube.com/embed/${trailerKey}`;
     iframeM.title = titleM;
     iframeM.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     iframeM.referrerPolicy = "strict-origin-when-cross-origin";
-
+    contIframe.appendChild(iframeM);
+    
     moviePlay.appendChild(cardM);
-    moviePlay.appendChild(iframeM);
+    moviePlay.appendChild(contIframe);
 }
 
 const movie = async (idMovie) => {
@@ -75,7 +78,7 @@ const movie = async (idMovie) => {
             genresMovie += genre.name + " - ";
         })
 
-        movieCard('http://image.tmdb.org/t/p/w300' + resMovie.poster_path, resMovie.title, Math.round(resMovie.vote_average), `${Math.floor(resMovie.runtime / 60)}h:${(resMovie.runtime % 60).toString().padStart(2, 0)}m`, resMovie.release_date.slice(0, 4), genresMovie.slice(0, -2), resMovie.overview, listTrailers[0].key)
+        movieCard('http://image.tmdb.org/t/p/w300' + resMovie.poster_path, resMovie.title, parseFloat(resMovie.vote_average.toFixed(1)), `${Math.floor(resMovie.runtime / 60)}h:${(resMovie.runtime % 60).toString().padStart(2, 0)}m`, resMovie.release_date.slice(0, 4), genresMovie.slice(0, -2), resMovie.overview, listTrailers[0].key)
 
 
     } catch (error) {

@@ -11,8 +11,8 @@ const contGlider = new Glider(document.querySelector('.glider'), {
 
   responsive: [
     {
-      // screens greater than >= 430px
-      breakpoint: 430,
+      // screens greater than >= 345px
+      breakpoint: 345,
       settings: {
         // Set to `auto` and provide item width to adjust to viewport
         slidesToShow: 2,
@@ -21,7 +21,7 @@ const contGlider = new Glider(document.querySelector('.glider'), {
     },
     {
       // screens greater than >= 630px
-      breakpoint: 630,
+      breakpoint: 545,
       settings: {
         // Set to `auto` and provide item width to adjust to viewport
         slidesToShow: 3,
@@ -81,6 +81,9 @@ appData.btnMenu.addEventListener('click', () => {
 appData.menuList.forEach((item, index) => {
   item.addEventListener('click', () => {
     appData.menu.classList.remove('items_active');
+    appData.menu.classList.remove('items_active');
+    appData.icoBtn.classList.add('fa-caret-down');
+    appData.icoBtn.classList.remove('fa-caret-up');
     // En base a la opcion seleccionada se cambiar el titulo por ese nombre.
     appData.updateCategory(index);
 
@@ -102,6 +105,44 @@ appData.btnHeader.addEventListener('click', () => {
     document.body.style.overflow = 'auto';
   }
 })
+
+
+// EVENT: redireccionar a pagina de la película al presionar el TÍTULO.
+appData.cardMovie.forEach(mov => {
+  mov.addEventListener('click', (e) => {
+    if (e.target.tagName == 'H2') {
+      console.log('HAY UN TÍTULO')
+      console.log('click en película.')
+
+      // se verifica que la card contenga una data-id para almacenarla y luego utilizarla al cargar la página movie.html
+      if (mov.getAttribute('data-id')) {
+        const dataIdMovie = mov.getAttribute('data-id');
+        sessionStorage.setItem('idMovie', dataIdMovie);
+        window.location.href = './src/movie.html';
+      }
+    }
+
+  })
+})
+// EVENT: al hacer click en la pélicula de la portada del home, redireccionar a movie.html.
+appData.btnPlayBg.addEventListener('click', () => {
+  console.log('click en boton PLAY')
+  if (appData.cardBgHome.getAttribute('data-id')) {
+    const idMovieBg = appData.cardBgHome.getAttribute('data-id');
+    sessionStorage.setItem('idMovie', idMovieBg);
+    window.location.href = './src/movie.html';
+  }
+})
+
+appData.btnTrailerBg.addEventListener('click', () => {
+  console.log('click en boton TRAILER');
+  if (appData.cardBgHome.getAttribute('data-id')) {
+    const idMovieBg = appData.cardBgHome.getAttribute('data-id');
+    sessionStorage.setItem('idMovie', idMovieBg);
+    window.location.href = './src/movie.html';
+  }
+})
+
 
 // EVENT: buscador de películas por nombre.
 appData.btnSearch.addEventListener('click', (e) => {

@@ -19,12 +19,15 @@ const searchMovie = document.getElementById('search');
 const btnSearch = document.getElementById('btn_search_header');
 // HOME MOVIE bg
 const bgHome = document.querySelector('.bg_main');
+const cardBgHome = document.querySelector('.cont_bg_main');
 const titleHomeMovie = document.getElementById('title_movie_bg');
 const raitingHomeMovie = document.getElementById('raiting');
 const timeHomeMovie = document.getElementById('time_movie');
 const releaseHomeMovie = document.getElementById('release');
 const genreHomeMovie = document.getElementById('genre_movie_bg');
 const synopsisHomeMovie = document.getElementById('synopsis_movie_bg');
+const btnPlayBg = document.getElementById('btn_play_movie_bg');
+const btnTrailerBg = document.getElementById('btn_play_trailer_bg');
 // MENU CATEGORY
 const btnMenu = document.getElementById('btn_c');
 const menu = document.querySelector('.category_items');
@@ -33,9 +36,11 @@ const selectCategory = document.getElementById('category_select');
 const icoBtn = document.querySelector('#btn_c i');
 // CAROUSEL CATEGORY
 const cardBody = document.querySelectorAll('.body_card');
+const cardMovie = document.querySelectorAll('.card');
 // GRID VIEWALL
 const titleGrid = document.getElementById('title_grid');
 const gridViewAll = document.querySelector('.grid_movies_all');
+const cardV = document.querySelectorAll('.card_movie');
 // Paginación
 const numPage = document.querySelector('.num_page');
 const totalPages = document.getElementById('total_pages');
@@ -43,7 +48,6 @@ const btnBack = document.getElementById('btn_back');
 const btnNext = document.getElementById('btn_next');
 // Cards RESULTS
 const listResults = document.querySelector('.list_result');
-
 
 if (!sessionStorage.getItem('categoria')) {
     // si no está la categoría creamos una por default "Now playing"
@@ -76,6 +80,8 @@ const bgMovie = async () => {
             const detailsMovie = await fetch(`${urlApi}/movie/${resultMovie.id}?api_key=${apiKey}`);
             const resDetailsMovie = await detailsMovie.json();
             console.log(resDetailsMovie);
+
+            cardBgHome.setAttribute('data-id', resDetailsMovie.id);
 
             let bgImg = document.createElement('img');
             bgImg.src = `http://image.tmdb.org/t/p/w1280${resDetailsMovie.backdrop_path}`;
@@ -112,6 +118,7 @@ const slideMovies = async (category) => {
 
         // Obtiene las primeras 10 películas de la lista.
         const movieListTen = resMovies.results.slice(0, 10);
+        console.log(movieListTen)
 
         cardBody.forEach((card, index) => {
             card.innerHTML = `
@@ -123,7 +130,11 @@ const slideMovies = async (category) => {
             <p id="sypnosis_movie_card">${movieListTen[index].overview}</p>
             </div>
             <img src="${urlImage}${movieListTen[index].poster_path}">
-            <h2>${movieListTen[index].title}</h2>`
+            <h2>${movieListTen[index].title}</h2>
+            `
+
+            // Se agrega la id de la pelicula al contenedor de cada card.
+            cardMovie[index].setAttribute('data-id', movieListTen[index].id);
         })
 
 
@@ -234,6 +245,11 @@ const appData = {
     btnBack,
     btnNext,
     listResults,
+    cardMovie,
+    btnPlayBg,
+    btnTrailerBg,
+    cardBgHome,
+    cardV,
 
 
     // Funciones.
