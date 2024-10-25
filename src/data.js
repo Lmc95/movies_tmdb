@@ -1,14 +1,15 @@
 // API TMDB
 async function fetchApiKey() {
-    const response = await fetch('/netlify/functions/getApiKey.js');
+    const response = await fetch('/.netlify/functions/getApiKey');
     const data = await response.json();
     return data.apiKey;
 }
 
 fetchApiKey().then(apiKey => {
-    // Usa la apiKey para hacer tus solicitudes a la API
-    console.log(apiKey);
+    console.log(apiKey); // Ahora debería funcionar sin errores
+    // Usa la apiKey para tus solicitudes a la API
 });
+
 
 // Esta api solo se utiliza para desarrollo.
 const apiKey = '0fd03a39b7ac0b30c7ab5e52ebb50d49';
