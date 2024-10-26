@@ -10,8 +10,6 @@ const fetchApiKey = async () => {
 };
 
 // Esta api solo se utiliza para desarrollo.
-// const apiKey = '0fd03a39b7ac0b30c7ab5e52ebb50d49';
-let apiKey;
 const urlApi = 'https://api.themoviedb.org/3';
 const urlImage = 'http://image.tmdb.org/t/p/w500'
 const urlCategory = {
