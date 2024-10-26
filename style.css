@@ -385,6 +385,7 @@ section {
     justify-content: space-between;
     align-items: flex-start;
     padding: var(--p-item);
+    margin-top: 3em;
     position: relative;
 }
 
