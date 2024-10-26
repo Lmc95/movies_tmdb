@@ -1,7 +1,16 @@
-import apiKey_1 from "./envData.js";
-let apiKey = apiKey_1;
 // API TMDB
+const fetchApiKey = async () => {
+    try {
+        const response = await fetch('/.netlify/functions/getApiKey');
+        const data = await response.json();
+        return data.apiKey;
+    } catch (error) {
+        console.error('Error fetching the API key:', error);
+    }
+};
+
 // Esta api solo se utiliza para desarrollo.
+// const apiKey = '0fd03a39b7ac0b30c7ab5e52ebb50d49';
 // const apiKey = '0fd03a39b7ac0b30c7ab5e52ebb50d49';
 const urlApi = 'https://api.themoviedb.org/3';
 const urlImage = 'http://image.tmdb.org/t/p/w500'
@@ -73,6 +82,7 @@ const closeMenu = () => {
 }
 
 const bgMovie = async () => {
+    const apiKey = await fetchApiKey();
     try {
         const getBg = await fetch(`${urlApi}/movie/popular?api_key=${apiKey}&page=1`);
         const resBg = await getBg.json();
