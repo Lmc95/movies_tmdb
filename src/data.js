@@ -124,6 +124,7 @@ const bgMovie = async () => {
 
 // Obtiene lista de películas según la categoría que le pasemos.
 const slideMovies = async (category) => {
+    const apiKey = await fetchApiKey();
     try {
         const getMovies = await fetch(`${urlApi}${category}?api_key=${apiKey}`)
         const resMovies = await getMovies.json();
@@ -157,6 +158,7 @@ const slideMovies = async (category) => {
 slideMovies(urlCategory.nowPlaying)
 
 const searchingMovie = async (userMovie) => {
+    const apiKey = await fetchApiKey();
     try {
         const movieS = await fetch(`${urlApi}/search/movie?query=${userMovie}&api_key=${apiKey}&page=1`);
         const resMovieS = await movieS.json();
