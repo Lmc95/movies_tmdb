@@ -1,19 +1,5 @@
+import apiKey from "./envData";
 // API TMDB
-let apiKey;
-
-function fetchApiKey() {
-    if (!apiKey) {
-        apiKey = fetch('/.netlify/functions/envNetlify')
-            .then(response => response.json())
-            .then(data => data.api_Key)
-            .catch(error => {
-                console.error('Error fetching the API key:', error);
-                return null;
-            });
-    }
-    return apiKey;
-}
-fetchApiKey();
 // Esta api solo se utiliza para desarrollo.
 // const apiKey = '0fd03a39b7ac0b30c7ab5e52ebb50d49';
 const urlApi = 'https://api.themoviedb.org/3';
@@ -87,40 +73,37 @@ const closeMenu = () => {
 
 const bgMovie = async () => {
     try {
-        if (apiKey) {
-            const getBg = await fetch(`${urlApi}/movie/popular?api_key=${apiKey}&page=1`);
-            const resBg = await getBg.json();
-            const resultMovie = resBg.results[0];
+        const getBg = await fetch(`${urlApi}/movie/popular?api_key=${apiKey}&page=1`);
+        const resBg = await getBg.json();
+        const resultMovie = resBg.results[0];
 
-            if (resBg) {
-                const detailsMovie = await fetch(`${urlApi}/movie/${resultMovie.id}?api_key=${apiKey}`);
-                const resDetailsMovie = await detailsMovie.json();
-                console.log(resDetailsMovie);
+        if (resBg) {
+            const detailsMovie = await fetch(`${urlApi}/movie/${resultMovie.id}?api_key=${apiKey}`);
+            const resDetailsMovie = await detailsMovie.json();
+            console.log(resDetailsMovie);
 
-                cardBgHome.setAttribute('data-id', resDetailsMovie.id);
+            cardBgHome.setAttribute('data-id', resDetailsMovie.id);
 
-                let bgImg = document.createElement('img');
-                bgImg.src = `http://image.tmdb.org/t/p/w1280${resDetailsMovie.backdrop_path}`;
-                bgHome.appendChild(bgImg);
+            let bgImg = document.createElement('img');
+            bgImg.src = `http://image.tmdb.org/t/p/w1280${resDetailsMovie.backdrop_path}`;
+            bgHome.appendChild(bgImg);
 
-                titleHomeMovie.textContent = resDetailsMovie.title;
-                raitingHomeMovie.innerHTML = `<i class="fa-regular fa-star"></i>${parseFloat(resDetailsMovie.vote_average).toFixed(1)}/10`;
+            titleHomeMovie.textContent = resDetailsMovie.title;
+            raitingHomeMovie.innerHTML = `<i class="fa-regular fa-star"></i>${parseFloat(resDetailsMovie.vote_average).toFixed(1)}/10`;
 
-                timeHomeMovie.innerHTML = `<i class="fa-regular fa-clock"></i>${Math.floor(resDetailsMovie.runtime / 60)}h:${(resDetailsMovie.runtime % 60).toString().padStart(2, 0)}m`;
+            timeHomeMovie.innerHTML = `<i class="fa-regular fa-clock"></i>${Math.floor(resDetailsMovie.runtime / 60)}h:${(resDetailsMovie.runtime % 60).toString().padStart(2, 0)}m`;
 
-                releaseHomeMovie.innerHTML = `<i class="fa-regular fa-calendar"></i>${resDetailsMovie.release_date.slice(0, 4)}`;
+            releaseHomeMovie.innerHTML = `<i class="fa-regular fa-calendar"></i>${resDetailsMovie.release_date.slice(0, 4)}`;
 
-                let genres = '';
-                resDetailsMovie.genres.forEach(genre => {
-                    genres += genre.name + " - ";
-                })
-                genreHomeMovie.textContent = genres.slice(0, -2);
+            let genres = '';
+            resDetailsMovie.genres.forEach(genre => {
+                genres += genre.name + " - ";
+            })
+            genreHomeMovie.textContent = genres.slice(0, -2);
 
-                synopsisHomeMovie.textContent = resDetailsMovie.overview;
+            synopsisHomeMovie.textContent = resDetailsMovie.overview;
 
-            }
         }
-
 
 
     } catch (error) {
