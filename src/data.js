@@ -236,7 +236,6 @@ const searchON = (element) => {
 
 const appData = {
     // Api.
-    apiKey,
     urlApi,
     urlCategory,
     urlImage,
