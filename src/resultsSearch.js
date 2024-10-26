@@ -74,6 +74,7 @@ const detailResult = async (resultId) => {
 
 // CREAR funcion que obtenga los resultados de busqueda.
 const getResultMovie = async (movie, pageNum) => {
+  const apiKey = await appData.fetchApiKey();
   try {
     const getResult = await fetch(`${appData.urlApi}/search/movie?query=${movie}&api_key=${apiKey}&page=${pageNum}`);
     const dataResult = await getResult.json();

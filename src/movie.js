@@ -51,13 +51,14 @@ const movieCard = (posterM, titleM, raitingM, timeM, releaseM, genreM, synM, tra
 }
 
 const movie = async (idMovie) => {
+  const apiKey = await appData.fetchApiKey();
     try {
-        const getMovie = await fetch(`${appData.urlApi}/movie/${idMovie}?api_key=${appData.apiKey}`);
+        const getMovie = await fetch(`${appData.urlApi}/movie/${idMovie}?api_key=${apiKey}`);
         const resMovie = await getMovie.json();
         console.log(resMovie);
 
         // Obtenemos los videos de la película.
-        const getMovieVideo = await fetch(`${appData.urlApi}/movie/${idMovie}/videos?api_key=${appData.apiKey}`);
+        const getMovieVideo = await fetch(`${appData.urlApi}/movie/${idMovie}/videos?api_key=${apiKey}`);
         const resMovieVideo = await getMovieVideo.json();
         console.log(resMovieVideo.results);
 
