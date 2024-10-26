@@ -1,7 +1,7 @@
 // apiKey.js
 let apiKey = fetch('/.netlify/functions/envNetlify')
     .then(response => response.json())
-    .then(data => data.apiKey)
+    .then(data => data.api_Key)
     .catch(error => {
         console.error('Error fetching the API key:', error);
         return null;
