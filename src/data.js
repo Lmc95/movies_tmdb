@@ -2,8 +2,8 @@
 let apiKey;
 
 function fetchApiKey() {
-    if (!apiKeyPromise) {
-        apiKeyPromise = fetch('/.netlify/functions/envNetlify')
+    if (!apiKey) {
+        apiKey = fetch('/.netlify/functions/envNetlify')
             .then(response => response.json())
             .then(data => data.api_Key)
             .catch(error => {
@@ -11,7 +11,7 @@ function fetchApiKey() {
                 return null;
             });
     }
-    return apiKeyPromise;
+    return apiKey;
 }
 fetchApiKey();
 // Esta api solo se utiliza para desarrollo.
