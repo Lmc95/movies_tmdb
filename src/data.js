@@ -1,4 +1,5 @@
 import apiKey from "./envData.js";
+console.log('AQUI ESTA LA:', apiKey);
 // API TMDB
 // Esta api solo se utiliza para desarrollo.
 // const apiKey = '0fd03a39b7ac0b30c7ab5e52ebb50d49';
@@ -260,8 +261,7 @@ const appData = {
     searchON,
     bgMovie,
     openMenu,
-    closeMenu,
-    fetchApiKey
+    closeMenu
 }
 
 export { appData }
