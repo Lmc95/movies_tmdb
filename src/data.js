@@ -1,5 +1,5 @@
-import apiKey from "./envData.js";
-
+import apiKey_1 from "./envData.js";
+let apiKey = apiKey_1;
 // API TMDB
 // Esta api solo se utiliza para desarrollo.
 // const apiKey = '0fd03a39b7ac0b30c7ab5e52ebb50d49';

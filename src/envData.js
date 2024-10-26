@@ -1,5 +1,5 @@
 // apiKey.js
-let apiKey = fetch('/.netlify/functions/envNetlify')
+let apiKey_1 = fetch('/.netlify/functions/envNetlify')
     .then(response => response.json())
     .then(data => data.api_Key)
     .catch(error => {
@@ -7,4 +7,4 @@ let apiKey = fetch('/.netlify/functions/envNetlify')
         return null;
     });
 
-export default apiKey;
+export default apiKey_1;
