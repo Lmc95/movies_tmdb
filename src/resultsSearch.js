@@ -54,8 +54,9 @@ const cardsResult = (imgRes, titleRes, raitingRes, timeRes, releaseRes, genreRes
 }
 
 const detailResult = async (resultId) => {
+  const apiKey = await appData.fetchApiKey();
   try {
-    const getRes = await fetch(`${appData.urlApi}/movie/${resultId}?api_key=${appData.apiKey}`);
+    const getRes = await fetch(`${appData.urlApi}/movie/${resultId}?api_key=${apiKey}`);
     const datRes = await getRes.json();
 
     let genresResult = '';
@@ -74,7 +75,7 @@ const detailResult = async (resultId) => {
 // CREAR funcion que obtenga los resultados de busqueda.
 const getResultMovie = async (movie, pageNum) => {
   try {
-    const getResult = await fetch(`${appData.urlApi}/search/movie?query=${movie}&api_key=${appData.apiKey}&page=${pageNum}`);
+    const getResult = await fetch(`${appData.urlApi}/search/movie?query=${movie}&api_key=${apiKey}&page=${pageNum}`);
     const dataResult = await getResult.json();
 
     console.log(dataResult);
@@ -139,7 +140,7 @@ cargar(numP)
 const movie1 = async (idMovie) => {
   try {
     
-    const getVideo = await fetch(`https://api.themoviedb.org/3/movie/${idMovie}/videos?api_key=${appData.apiKey}&language=en-US`)
+    const getVideo = await fetch(`https://api.themoviedb.org/3/movie/${idMovie}/videos?api_key=${apiKey}&language=en-US`)
     const resVideo = await getVideo.json();
 
     console.log(resVideo);
